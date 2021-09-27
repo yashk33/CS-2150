@@ -1,0 +1,16 @@
+C004 00         jmp     start	skip around variables
+3000 01         dw      ldit	opcode for load
+000F 02         dw      size	size of the program
+0001 03         dw      one	declare one
+3002 04  start  load    size	start program by loading size
+6011 05         sub     temp	check for exit
+E010 06         jmpl    endp	exit if needed
+3001 07         load    ldit	load 3000
+5011 08         add     temp	add temp
+400A 09         store   	store in accumulator
+0000 0A         dw      exe	load current memory address
+1800 0B         printH		print current memory address
+3011 0C         load    temp	load temp     
+5003 0D         add     one	add 1
+4011 0E         store   temp	store in accumulator
+C004 0F         jmp     start	return to beginning of loop

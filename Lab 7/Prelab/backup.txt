@@ -1,0 +1,28 @@
+C009 000	jmp 	start 	skip around the variables
+0000 001 x	dw 	0 	int x
+0000 002 y 	dw 	0 	int y
+0000 003 z 	dw 	0 	int z
+0000 004			More Space for Changes
+0000 005			More Space for Changes
+0000 006			More Space for Changes
+0000 007			More Space for Changes
+0000 008			More Space for Changes
+1000 009 start	read		read in x
+4001 00A 	store	x	store x in accumulator
+1000 00B	read		read in y
+4002 00C	store	y	store y in accumulator
+1000 00D	read		read in z
+4003 00E	store	z	store z in accumulator
+3001 01F	load	x	load x into accumulator
+5002 010	add	y	add y to accumulator
+5003 011	add	z	add z to accumulator
+1800 012	print		prints out accumulator
+D015 013	jmpe	015	if accumulator is zero, jumps to 015
+C009 014	jmp	start	returns to start if needed
+3001 015	load	x	load x into accumulator
+1800 016	print		prints out x
+3002 017	load	y	load y into accumulator
+1800 018	print		prints out y
+3003 019	load	z	load z into accumulator
+1800 01A	print		prints out z
+0000 01B	halt		ends program

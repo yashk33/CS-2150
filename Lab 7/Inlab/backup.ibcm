@@ -1,0 +1,116 @@
+C020 000              jmp     strt	skip variable
+000A 001      size    dw      10	size of the array set to 10
+0003 002      a       dw      0     	array address
+0000 003      a0      dw      0       	element 1
+0000 004      a1      dw      0         element 2
+0000 005      a2      dw      0         element 3
+0000 006      a3      dw      0         element 4 
+0000 007      a4      dw      0         element 5 
+0000 008      a5      dw      0         element 6
+0000 009      a6      dw      0         element 7
+0000 00A      a7      dw      0         element 8
+0000 00B      a8      dw      0         element 9
+0000 00C      a9      dw      0         element 10
+0000 00D      zero    dw      0         zero
+0001 00E      one     dw      1         one
+4000 00F      stor    dw      4000      store value
+3000 010      ldit    dw      3000      load value
+0000 011      curr    dw      0         variable for current value
+0000 012      prev    dw      0         variable for previous value
+0000 013      temp    dw      0         temporary variable for comparing
+0000 014      i	      dw      0         used for iteration
+0009 015      j       dw      9         used for iteration
+0000 016				extra space
+0000 017				extra space
+0000 018				extra space
+0000 019				extra space
+0000 01A				extra space
+0000 01B				extra space
+0000 01C				extra space
+0000 01D				extra space
+0000 01E				extra space
+0000 01F				extra space
+3001 020 strt load    size   		starts program 
+3001 021 loop load    size	        starts loop to load inputs into array
+6014 022      sub     i			subtracts i from accumulator
+E02F 023      jmpl    exit		exit check
+D02F 024      jmpe    exit		exit check
+300F 025      load    stor		loads 4000
+5002 026      add     a			loads array address
+5014 027      add     i			loads index
+402A 028      store   dit		stores into function
+1000 029      read			reads user input
+0000 02A dit  dw      0			calls function
+3014 02B      load    i			loads i
+500E 02C      add     one		adds one to accumulator
+4014 02D      store   i			stores in i
+C021 02E      jmp     strt		returns to start of the loop
+300D 02F exit load    zero		exit
+4014 030      store   i			stores 0 in i
+3001 031 strt load    size    		loads size
+6014 032      sub     i			subtracts i from accumulator
+E05F 033      jmpl    ex1		exit check
+D05F 034      jmpe    ex1		exit check
+3015 035 jlp  load    j       		loads j for inner loop
+6014 036      sub     i           	subtracts i from accumulator
+E058 037      jmpl    ex2   		exit check
+D058 038      jmpe    ex2   		exit check
+3010 039      load    ldit    		loads 3000
+5002 03A      add     a      		adds array address
+5015 03B      add     j			adds iterator index
+403F 03C      store   var1    		stores into a function
+600E 03D      sub     one		subtracts 1 from accumulator
+4041 03E      store   var2  		stores into another function
+0000 03F var1 dw      0       		calls store function
+4011 040      store   curr    		stores current
+0000 041 var2 dw      0       		calls store function
+4012 042      store   prev		stores previous
+3011 043      load    curr		loads current into accumulator
+6012 044      sub     prev		subtracts the previous value
+E047 045      jmpl    swap   	        exit check 
+C054 046      jmp     endl              exit check
+300F 047 swap load    stor   		swap loop
+5002 048      add     a			adds array address
+5015 049      add     j			adds iterator
+404C 04A      store   swp1		stores value in function
+3012 04B      load    prev		loads previous
+0000 04C swp1 dw      0 		calls function
+300F 04D      load    stor  		loads 4000
+5002 04E      add     a			adds array address
+5015 04F      add     j			adds iterator
+600E 050      sub     one		subtracts one
+4053 051      store   swp2		stores in function
+3011 052      load    curr		loads current value
+0000 053 swp2 dw      0			swaps using stored function
+3015 054 endl load    j      		loads j
+600E 055      sub     one		subtracts 1 from j
+4015 056      store   j			stores j
+C035 057      jmp     jlp		jumps to j loop
+3014 058 ex2  load    i       		exits j loop
+500E 059      add     one		adds 1 to i
+4014 05A      store   i			stores i
+3001 05B      load    size		loads size
+600E 05C      sub     one		subtracts 1
+4015 05D      store   j			stores in j
+C031 05E      jmp     strt		return to beginning of loop
+3003 05F ex1  load    a0	        prints sorted elements of the array
+1800 060      print
+3004 061      load    a1
+1800 062      print
+3005 063      load    a2
+1800 064      print
+3006 065      load    a3
+1800 066      print
+3007 067      load    a4
+1800 068      print
+3008 069      load    a5
+1800 06A      print
+3009 06B      load    a6
+1800 06C      print
+300A 06D      load    a7
+1800 06E      print
+300B 06F      load    a8
+1800 070      print
+300C 071      load    a9
+1800 072      print
+0000 073      halt

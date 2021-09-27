@@ -1,0 +1,57 @@
+C009 000	jmp 	start 	skip around the variables
+0000 001 size	dw	0	initialize array size variable
+0000 002 temp	dw	0	initialize temporary variable to store arr values
+0000 003 zero	dw	0	initialize variable equal to 0
+0001 004 one	dw	1	initialize variable equal to 1
+0020 005 a	dw	20	initialize a[i]
+3000 006 adit	dw	3000	adit function
+0000 007 i	dw	0	initialize variable i for iteration
+0000 008 var	dw	0	declare variable used to add
+1000 009 start	readH		read in size of array
+4001 00A	store	size	store in size
+4002 00B	store	temp	store in temp
+3003 00C	load	zero	load zero
+4007 00D	store	i	i = 0
+3001 00E loop	load	size 	run loop while (i >= size)
+6007 00F 	sub	i	subtract i from the size
+E01E 010	jmpl	exit	look to exit
+D01E 011	jmpe	exit	look to exit
+1000 012	readH		take input
+4008 013	store	var	store input
+3006 014	load 	adit	load function to add to array
+5005 015	add	a	add array address
+5007 016	add	var	add input
+4019 017	store 	doit	store in doit
+3002 018	load 	temp	add array value
+b000 019 doit	nop		do nothing
+3007 01A	load	i	load i
+5004 01B	add	one	i + 1
+4007 01C	store	i	store accumulator in i
+C00E 01D	jmp	loop	jump loop
+3004 01E exit	load	one	exit condition
+4007 01F	store	i	store accumulator in i
+3001 020 loop	load	size 	run loop while (i >= size)
+6007 021 	sub	i	subtract i from the temporary size
+E029 022	jmpl	exit	look to exit
+D029 023	jmpe	exit	look to exit
+3007 024	load	i	loads i to accumulator	
+1800 025	print		prints accumulator
+5004 026	add	one	adds 1
+4007 027	store	i	stores i in accumulator
+C020 028	jmp	loop	jumps loop
+3004 029 exit	load	one	loads one
+4007 02A 	store	i	stores i in accumulator
+3008 02B 	load	size	loads size
+1800 02C	print		prints last element
+3008 02D 	load	size	loads size
+1800 02E	print		prints last element
+3001 02F loop	load	size	run loop while (i >= var)
+6007 030 	sub	i	subtract i from the temporary size
+E038 031	jmpl	exit	look to exit
+D038 032	jmpe	exit	look to exit
+1800 033	print		prints accumulator	
+3007 034	load	i	loads i
+5004 035	add	one	adds 1
+4007 036	store	i	stores i in accumulator
+C02F 037	jmp	loop	jumps loop
+0000 038 exit	halt
